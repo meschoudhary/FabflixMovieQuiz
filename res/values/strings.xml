@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, QuizApp!</string>
+    <string name="app_name">Fabflix Movie Quiz</string>
+  	<string name="start">Start Quiz</string>
+  	<string name="stats">View Statistics</string>
+  	<string name="image_description">A image to fill the blank space.</string>
+  	<string name="string_filler">Replace me.</string>
+  	<string name="timer">Timer</string>
+  	<string name="test">Test</string>
+  	<string name="score">Overall Score:</string>
+  	<string name="taken">Quizzes Taken:</string>
+  	<string name="correct">Correct Answers:</string>
+  	<string name="incorrect">Incorrect Answers:</string>
+  	<string name="timePerQuestion">Average Time per Question:</string>
+  	<string name="back">Back to Main Menu</string>
+  	<string name="empty"/>
+  	<string name="current_stat">Your Quiz Score</string>
+  	<string name="total_stat">Overall Quiz Score</string>
+</resources>

@@ -1,0 +1,1 @@
+The goal of this project is to learn how to do programming on mobile phones due to their increasing popularity these days. You will dump the movie database from MySQL to an Android SQLite database, and implement a movie quiz application using Android or iPhone. Our official platform is Android, and students have to the freedom to choose iPhone/iOS.

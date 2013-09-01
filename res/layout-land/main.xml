@@ -6,13 +6,12 @@
 
     <Button
         android:id="@+id/startQuizButton"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dip"
         android:background="@drawable/button"
         android:padding="0dip"
         android:text="@string/start" />
-
     <ImageView
         android:id="@+id/mainView"
         android:layout_width="match_parent"

@@ -1,5 +1,14 @@
-FabflixMovieQuiz is an Android mobile application built using the Android SDK on the Eclipse IDE with ADT plugin.
+# FabflixMovieQuiz
 
-The application integrates with the built-in Android SQLite database.
+A movie quiz app for Android mobile devices.
 
-The goal of this project is to learn how to do programming on mobile phones due to their increasing popularity these days. The movie database from MySQL is dumped to an Android SQLite database and a movie quiz application is implemented using Android.
+The goal of FabflixMovieQuiz is to create a movie quiz app on Android mobile device.
+
+## About
+
+FabflixMovieQuiz is a simple movie quiz mobile app for Android devices. The movie database has been dumped to an Android SQLite database from MySQL. Players have 3 minutes to answer multiple choice questions related to movies and view their overall statistics.
+
+## Screenshot
+
+![Portrait](screenshots/portrait.png?raw=true "Portrait")
+

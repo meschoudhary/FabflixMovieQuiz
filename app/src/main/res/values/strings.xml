@@ -18,4 +18,6 @@
   	<string name="empty"/>
   	<string name="current_stat">Your Quiz Score</string>
   	<string name="total_stat">Overall Quiz Score</string>
+	<string name="correct_response">Correct!</string>
+	<string name="incorrect_response">Incorrect!</string>
 </resources>

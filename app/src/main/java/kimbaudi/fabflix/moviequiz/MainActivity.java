@@ -1,4 +1,4 @@
-package edu.uci.CS122B.QuizApp;
+package kimbaudi.fabflix.moviequiz;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,8 +13,6 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 	public static final int QUIZ_START = 1;
-	private Button startButton;
-	private Button statsButton;
 	private QuestionGenerator g = null;
 	private MediaPlayer mp;
 
@@ -24,10 +22,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		startButton = (Button) this.findViewById(R.id.startQuizButton);
+		Button startButton = (Button) this.findViewById(R.id.startQuizButton);
 		startButton.setOnClickListener(new startListener());
 
-		statsButton = (Button) this.findViewById(R.id.statisticsButton);
+		Button statsButton = (Button) this.findViewById(R.id.statisticsButton);
 		statsButton.setOnClickListener(new statsListener());
 
 		mp = MediaPlayer.create(MainActivity.this, R.raw.fof98);

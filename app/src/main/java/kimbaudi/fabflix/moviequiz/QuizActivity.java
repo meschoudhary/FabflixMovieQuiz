@@ -1,4 +1,4 @@
-package edu.uci.CS122B.QuizApp;
+package kimbaudi.fabflix.moviequiz;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,8 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends Activity {
-	public static final int QUIZ_DONE = 1;
-	public static final int QUIZ_QUIT = 2;
 
 	private static final long duration = 3 * 60 * 1000; // Standard duration
 	// // private static final long duration = 12 * 1000; // Shorter duration
@@ -74,7 +72,7 @@ public class QuizActivity extends Activity {
 		if (savedInstanceState == null) {
 			elapsed = 0;
 			running = true;
-			question = new String();
+			question = "";
 			answers = new String[4];
 			answer = -1;
 			score = 0;
@@ -161,7 +159,7 @@ public class QuizActivity extends Activity {
 	}
 
 	private void displayQuiz() {
-		((TextView) this.findViewById(R.id.scoreView)).setText(String.format(
+		((TextView) this.findViewById(R.id.scoreView)).setText(String.format(Locale.US,
 				"Score: %d of %d", score, total));
 		((TextView) this.findViewById(R.id.quizView)).setText(Html
 				.fromHtml(question));
@@ -172,20 +170,20 @@ public class QuizActivity extends Activity {
 	}
 
 	private void setQuizButtonOnClickListeners() {
-		((Button) this.findViewById(R.id.buttonA))
+		this.findViewById(R.id.buttonA)
 				.setOnClickListener(new ButtonClickHelper(0));
-		((Button) this.findViewById(R.id.buttonB))
+		this.findViewById(R.id.buttonB)
 				.setOnClickListener(new ButtonClickHelper(1));
-		((Button) this.findViewById(R.id.buttonC))
+		this.findViewById(R.id.buttonC)
 				.setOnClickListener(new ButtonClickHelper(2));
-		((Button) this.findViewById(R.id.buttonD))
+		this.findViewById(R.id.buttonD)
 				.setOnClickListener(new ButtonClickHelper(3));
 	}
 
 	private class ButtonClickHelper implements OnClickListener {
 		private int id = -1;
 
-		public ButtonClickHelper(int i) {
+		ButtonClickHelper(int i) {
 			id = i;
 		}
 
@@ -198,7 +196,7 @@ public class QuizActivity extends Activity {
 				score++;
 				playSound(correct_sound, 1.0f);
 				toastImage.setImageResource(R.drawable.correct);
-				toastText.setText("Correct!");
+				toastText.setText(getResources().getString(R.string.correct_response));
 				toast.setGravity(Gravity.CENTER_VERTICAL, -175, 75); // offset
 																		// left
 																		// bottom
@@ -206,7 +204,7 @@ public class QuizActivity extends Activity {
 			} else {
 				playSound(error_sound, 1.0f);
 				toastImage.setImageResource(R.drawable.incorrect);
-				toastText.setText("Incorrect!");
+				toastText.setText(getResources().getString(R.string.incorrect_response));
 				toast.setGravity(Gravity.CENTER_VERTICAL, 175, 75); // offset
 																	// right
 																	// bottom
@@ -243,7 +241,7 @@ public class QuizActivity extends Activity {
 				seconds = seconds % 60;
 
 				((TextView) QuizActivity.this.findViewById(R.id.timerView))
-						.setText(String.format("Time Left: %d:%02d", minutes,
+						.setText(String.format(Locale.US, "Time Left: %d:%02d", minutes,
 								seconds));
 				if (running)
 					handler.postDelayed(this, 1000);

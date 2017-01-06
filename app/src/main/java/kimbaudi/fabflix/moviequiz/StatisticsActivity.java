@@ -1,4 +1,4 @@
-package edu.uci.CS122B.QuizApp;
+package kimbaudi.fabflix.moviequiz;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -8,6 +8,8 @@ import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class StatisticsActivity extends Activity {
 	private String[] results = new String[6];
@@ -30,23 +32,15 @@ public class StatisticsActivity extends Activity {
 
 		playQuizResultAudio();
 
-		// this.findViewById(R.id.layoutBody).setOnClickListener(new
-		// OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-		// finish();
-		// }
-		// });
-
 		this.findViewById(R.id.statisticsButton).setOnClickListener(
-				new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-						finish();
-					}
-				});
+			new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+					finish();
+				}
+			}
+		);
 	}
 
 	private void playQuizResultAudio() {
@@ -78,10 +72,7 @@ public class StatisticsActivity extends Activity {
 	private void getExtraData() {
 		Bundle b = getIntent().getExtras();
 		allStats = true;
-		if (b == null)
-			allStats = true;
-		else
-			allStats = b.getBoolean("allStats");
+		allStats = b == null || b.getBoolean("allStats");
 	}
 
 	private void getStats() {
@@ -116,7 +107,7 @@ public class StatisticsActivity extends Activity {
 
 	private float roundFloatToDecimalPlaces(float value, int places) {
 		float p = (float) Math.pow(10, places);
-		return (float) Math.round(value *= p) / p;
+		return (float) Math.round(value * p) / p;
 	}
 
 	@Override
@@ -153,7 +144,7 @@ public class StatisticsActivity extends Activity {
 			((TextView) this.findViewById(R.id.row5Label)).setText(this
 					.getString(R.string.timePerQuestion));
 			((TextView) this.findViewById(R.id.row5Result)).setText(String
-					.format("%.1f seconds", Float.valueOf(results[4])));
+					.format(Locale.US, "%.1f seconds", Float.valueOf(results[4])));
 		} else {
 			((TextView) this.findViewById(R.id.statsTitleView))
 					.setText(results[5]);
@@ -174,7 +165,7 @@ public class StatisticsActivity extends Activity {
 			((TextView) this.findViewById(R.id.row4Label)).setText(this
 					.getString(R.string.timePerQuestion));
 			((TextView) this.findViewById(R.id.row4Result)).setText(String
-					.format("%.1f seconds", Float.valueOf(results[4])));
+					.format(Locale.US, "%.1f seconds", Float.valueOf(results[4])));
 
 			((TextView) this.findViewById(R.id.row5Label)).setText(this
 					.getString(R.string.empty));

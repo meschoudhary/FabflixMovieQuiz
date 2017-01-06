@@ -1,4 +1,4 @@
-package edu.uci.CS122B.QuizApp;
+package kimbaudi.fabflix.moviequiz;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -7,10 +7,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
-public class QuestionGenerator extends Thread {
-	Context ctx;
-	BlockingQueue<Bundle> queue;
-	public volatile boolean done = false;
+class QuestionGenerator extends Thread {
+	private Context ctx;
+	private BlockingQueue<Bundle> queue;
+	volatile boolean done = false;
 
 	private String[] questions = {
 			"Who directed the movie <u>%s</u>?",
@@ -25,10 +25,8 @@ public class QuestionGenerator extends Thread {
 			"Who directed the star <u>%s</u> in year <u>%s</u>?" };
 
 	private String[] answers;
-	private String question;
-	private int answer;
 
-	public QuestionGenerator(BlockingQueue<Bundle> q, Context c) {
+	QuestionGenerator(BlockingQueue<Bundle> q, Context c) {
 		queue = q;
 		ctx = c;
 
@@ -40,13 +38,13 @@ public class QuestionGenerator extends Thread {
 			DbAdapter db = new DbAdapter(ctx);
 			Random random = new Random();
 			int randomQuestion = random.nextInt(questions.length);
-			question = new String();
+			String question = "";
 			answers = new String[4];
-			answer = random.nextInt(answers.length);
+			int answer = random.nextInt(answers.length);
 
 			Cursor cursor;
-			String movie_id = new String();
-			String star_id = new String();
+			String movie_id = "";
+			String star_id = "";
 			switch (randomQuestion) {
 			case 0:
 				// Who directed the movie X?
@@ -135,18 +133,6 @@ public class QuestionGenerator extends Thread {
 				}
 				cursor.close();
 
-				/*
-				 * // Who directed the star %s? cursor = db.fetchRandomStar();
-				 * if (cursor.moveToFirst()) { question =
-				 * String.format(questions[randomQuestion], cursor
-				 * .getString(1).trim()); star_id = cursor.getString(0).trim();
-				 * cursor = db.fetchRandomDirector(star_id); String director =
-				 * new String(); if (cursor.moveToFirst()) { director =
-				 * cursor.getString(0).trim(); answers[answer] = director; }
-				 * fillWrongButtons(answer, db.fetchRandomDirectors(director));
-				 * } cursor.close();
-				 */
-
 				break;
 			case 6:
 				// Who did not direct the star %s?
@@ -170,9 +156,9 @@ public class QuestionGenerator extends Thread {
 			case 7:
 				// Which star appears in both movies %s and %s?
 				String[] movies = new String[2];
-				String name = new String();
-				String first_name = new String();
-				String last_name = new String();
+				String name;
+				String first_name;
+				String last_name;
 				cursor = db.fetchRandomStarWhoAppearsInTwoMovies();
 				if (cursor.moveToFirst()) {
 					name = cursor.getString(0).trim();
@@ -245,10 +231,9 @@ public class QuestionGenerator extends Thread {
 			for (int i = 0; i < answers.length; i++) {
 				if (i != correct) {
 					answers[i] = cursor.getString(0);
-					if (cursor.moveToNext())
-						continue;
-					else
+					if (!cursor.moveToNext()) {
 						break;
+					}
 				}
 			}
 		}

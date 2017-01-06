@@ -1,4 +1,4 @@
-package edu.uci.CS122B.QuizApp;
+package kimbaudi.fabflix.moviequiz;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
